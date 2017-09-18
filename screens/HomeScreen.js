@@ -21,6 +21,12 @@ export default class HomeScreen extends React.Component {
             navigate('Color');
           }}
         />
+        <Button
+          title = "Day 2" 
+          onPress = { () => {
+            navigate('Card');
+          }}
+        />
       </View>
     );
   }
