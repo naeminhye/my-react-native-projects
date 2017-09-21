@@ -27,6 +27,18 @@ export default class HomeScreen extends React.Component {
             navigate('Card');
           }}
         />
+        <Button
+          title = "Day 3" 
+          onPress = { () => {
+            navigate('Clock');
+          }}
+        />
+        {/* <Button
+          title = "Day 3" 
+          onPress = { () => {
+            navigate('Weather');
+          }}
+        /> */}
       </View>
     );
   }
