@@ -15,19 +15,24 @@ export default class ClockScreen extends React.Component {
 
         this.state = {
             // time: moment().format("LTS"),
-            hour: moment().hours(),
+            hour: this.pad(moment().hour(), 2),
             minute: moment().minute(),
-            second: moment().second(),
+            second: this.pad(moment().second(), 2),
             date: moment().format("LL"),
           };
+    }
+
+    pad (str, max) {
+        str = str.toString();
+        return str.length < max ? this.pad("0" + str, max) : str;
     }
 
     updateTime(){
         this.setState({
             // time: moment().format("LTS"),
-            hour: moment().hours(),
+            hour: this.pad(moment().hour(), 2),
             minute: moment().minute(),
-            second: moment().second(),
+            second: this.pad(moment().second(), 2),
             date: moment().format("LL"),
         });
     }
