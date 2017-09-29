@@ -16,35 +16,47 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={ styles.container }>
         <Button
-          title = "Day 1" 
+          title = "Random Color" 
           onPress = { () => {
             navigate('Color');
           }}
         />
-        <Button
+        {/* <Button
           title = "Day 2" 
           onPress = { () => {
             navigate('Card');
           }}
-        />
+        /> */}
         <Button
-          title = "Day 3" 
+          title = "Digital Clock" 
           onPress = { () => {
             navigate('Clock');
           }}
         />
         <Button
-          title = "Day 4" 
+          title = "Tap to love" 
           onPress = { () => {
             navigate('Heart');
           }}
         />
         <Button
-          title = "Day 5" 
+          title = "Animation" 
           onPress = { () => {
             navigate('Animation');
           }}
         />
+        <Button
+          title = "Calculator" 
+          onPress = { () => {
+            navigate('Calculation');
+          }}
+        />
+        {/* <Button
+          title = "Day 6" 
+          onPress = { () => {
+            navigate('TODO');
+          }}
+        /> */}
         {/* <Button
           title = "Day 4" 
           onPress = { () => {
