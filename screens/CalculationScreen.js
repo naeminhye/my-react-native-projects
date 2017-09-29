@@ -17,12 +17,19 @@ const inputButtons = [
 ];
 
 export default class CalculationScreen extends React.Component {
+
+    static navigationOptions = {
+        header: null
+      }
+
     constructor(props) {
         super(props);
         
         this.initialState = {
-            previousInputValue: 0,
-            inputValue: 0,
+            previousValue: 0,
+            // inputValue: 0, // doi ten thanh currentValue
+            currentValue: 0,
+            display: 0,
             selectedSymbol: null
         }
 
@@ -33,12 +40,12 @@ export default class CalculationScreen extends React.Component {
         let views = inputButtons.map((row, idx) => {
             let inputRow = row.map((buttonVal, columnIdx) => {
                 let btnColor = '', btnFlex = 1;
-                if (columnIdx == row.length - 1)
+                if (columnIdx === row.length - 1)
                     btnColor = '#FF9500'
-                else if (row == 0)
+                else if (idx === 0)
                     btnColor = '#A6A6A6';
                 else btnColor = '#323232';
-                if(buttonVal == 0)
+                if(buttonVal === 0)
                     btnFlex = 2;
                 return <InputButton
                             value={buttonVal}
@@ -53,33 +60,6 @@ export default class CalculationScreen extends React.Component {
         });
 
         return views;
-
-        // let views = [];
-        // for (var r = 0; r < inputButtons.length; r ++) {
-        //     let row = inputButtons[r];
-        //     let inputRow = [];
-        //     for (var i = 0; i < row.length; i ++) {
-        //         let input = row[i], btnColor = '', btnFlex = 1;
-        //         if (i == row.length - 1)
-        //             btnColor = '#FF9500'
-        //         else if (r == 0)
-        //             btnColor = '#A6A6A6';
-        //         else btnColor = '#323232';
-        //         if(input == 0)
-        //             btnFlex = 2;
-        //         inputRow.push(
-        //             <InputButton
-        //                 value={input}
-        //                 color={btnColor}
-        //                 flexValue={btnFlex}
-        //                 highlight={this.state.selectedSymbol === input}
-        //                 onPress={this._onInputButtonPressed.bind(this, input)}
-        //                 key={r + "-" + i}/>
-        //         );
-        //     }
-        //     views.push(<View style={styles.inputRow} key={"row-" + r}>{inputRow}</View>)
-        // }
-        // return views;
     }    
 
     _onInputButtonPressed(input) {
@@ -92,14 +72,22 @@ export default class CalculationScreen extends React.Component {
     }
 
     _handleNumberInput(num) {
-        let inputValue = (this.state.inputValue * 10) + num;
+        let currentValue = (this.state.currentValue * 10) + num,
+            display = (this.state.selectedSymbol === '.') ? eval(this.state.display + num) : ((this.state.currentValue * 10) + num);
 
         this.setState({
-            inputValue: inputValue,
+            currentValue: currentValue,
+            display: display,
         });
     }
 
     _handleStringInput(str) {
+        let value = this.state.currentValue,
+            previous = this.state.previousValue,
+            display = this.state.display,
+            percentedValue = this.state.currentValue / 100,
+            signChangedValue = 0 - this.state.currentValue,
+            dottedValue = this.state.currentValue + '.';
         switch (str) {
             case '/':
             case '*':
@@ -107,33 +95,50 @@ export default class CalculationScreen extends React.Component {
             case '-':
                 this.setState({
                     selectedSymbol: str,
-                    previousInputValue: this.state.inputValue,
-                    inputValue: 0,
+                    previousValue: value,
+                    currentValue: 0,
+                    display: value,
                 });
                 break;
             case '+/-':
                 this.setState({
                     selectedSymbol: null,
-                    previousInputValue: this.state.inputValue,
-                    inputValue: 0 - this.state.inputValue,
+                    previousValue: value,
+                    currentValue: signChangedValue,
+                    display: signChangedValue,
                 });
                 break;
             case '%':
+                this.setState({
+                    selectedSymbol: null,
+                    previousValue: value,
+                    currentValue: percentedValue,
+                    display: percentedValue,
+                });
                 break;
             case '.':
+                if(display.toString().includes(".")) {
+                    break;
+                }
+                this.setState({
+                    selectedSymbol: str,
+                    previousValue: value,
+                    currentValue: 0,
+                    display: dottedValue,
+                });
                 break;
             case '=':
                 let symbol = this.state.selectedSymbol,
-                inputValue = this.state.inputValue,
-                previousInputValue = this.state.previousInputValue;
+                result = eval(previous + symbol + value);
 
                 if (!symbol) {
                     return;
                 }
 
                 this.setState({
-                    previousInputValue: 0,
-                    inputValue: eval(previousInputValue + symbol + inputValue),
+                    previousValue: 0,
+                    currentValue: result,
+                    display: result,
                     selectedSymbol: null
                 });
                 break;
@@ -147,7 +152,7 @@ export default class CalculationScreen extends React.Component {
         return (
             <View style={styles.rootContainer}>
                 <View style={styles.displayContainer}>
-                    <Text style={styles.displayText}>{this.state.inputValue}</Text>
+                    <Text style={styles.displayText}>{this.state.display}</Text>
                 </View>
                 <View style={styles.inputContainer}>
                     {this._renderInputButtons()}
@@ -162,18 +167,18 @@ const styles = StyleSheet.create({
         flex: 1
     },
     displayContainer: {
-        flex: 2,
+        flex: 3,
         backgroundColor: '#000',
         justifyContent: 'flex-end'
     },
     displayText: {
         color: 'white',
-        fontSize: 80,
+        fontSize: 100,
         textAlign: 'right',
         padding: 20
     },
     inputContainer: {
-        flex: 8,
+        flex: 7,
         backgroundColor: '#000',
     },
     inputRow: {

@@ -10,10 +10,9 @@ export default class InputButton extends React.Component {
     
     render() {
         return (
-            <TouchableHighlight style={[styles.inputButton, this.props.highlight ? styles.inputButtonHighlighted : null, {backgroundColor: this.props.color, flex: this.props.flexValue}]}
-                                underlayColor='#FFFE'
+            <TouchableHighlight style={[styles.inputButton, this.props.highlight ? {backgroundColor: '#FFF'} : {backgroundColor: this.props.color}, {flex: this.props.flexValue}]}
                                 onPress={this.props.onPress}>
-                <Text style={styles.inputButtonText}>{this.props.value}</Text>
+                <Text style={[styles.inputButtonText, this.props.highlight ? {color: this.props.color} : {color: '#FFF'}]}>{this.props.value}</Text>
             </TouchableHighlight>
             // <TouchableHighlight style={[styles.inputButton, {backgroundColor: this.props.color, flex: this.props.flexValue}]}
             //                     onPress={this.props.onPress}>
@@ -33,7 +32,6 @@ var styles = StyleSheet.create({
         borderColor: '#000',
     },
     inputButtonText: {
-        fontSize: 30,
-        color: 'white'
+        fontSize: 40,
     }
 });
