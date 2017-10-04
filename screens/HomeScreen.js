@@ -21,12 +21,12 @@ export default class HomeScreen extends React.Component {
             navigate('Color');
           }}
         />
-        {/* <Button
-          title = "Day 2" 
+        <Button
+          title = "Custom Fonts" 
           onPress = { () => {
-            navigate('Card');
+            navigate('Font');
           }}
-        /> */}
+        />
         <Button
           title = "Digital Clock" 
           onPress = { () => {
@@ -51,12 +51,30 @@ export default class HomeScreen extends React.Component {
             navigate('Calculation');
           }}
         />
-        {/* <Button
-          title = "Day 6" 
+        <Button
+          title = "TODO List" 
           onPress = { () => {
             navigate('TODO');
           }}
-        /> */}
+        />
+        <Button
+          title = "Swipeable List" 
+          onPress = { () => {
+            navigate('Swipeable');
+          }}
+        />
+        <Button
+          title = "Grid View" 
+          onPress = { () => {
+            navigate('Grid');
+          }}
+        />
+        <Button
+          title = "Demo Grid TODO List" 
+          onPress = { () => {
+            navigate('Demo');
+          }}
+        />
         {/* <Button
           title = "Day 4" 
           onPress = { () => {
