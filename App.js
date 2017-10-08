@@ -12,6 +12,9 @@ import TODOScreen from './screens/TODOScreen';
 import SwipeableScreen from './screens/SwipeableScreen';
 import SuperGrid from './screens/SuperGrid';
 import GridToDoList from './screens/GridToDoList';
+import TestCoords from './screens/TestCoords';
+import DemoWeather from './DemoWeather';
+import Weather from './SimpleWeather/Weather';
 // import WeatherScreen from './screens/WeatherScreen';
 
 import { StackNavigator } from 'react-navigation';
@@ -28,7 +31,9 @@ const MyFirstApp = StackNavigator({
   Swipeable: { screen: SwipeableScreen },
   Grid: { screen: SuperGrid },
   Demo: { screen: GridToDoList },
-  // Weather : { screen: WeatherScreen},
+  TestCoords: { screen: TestCoords },
+  DemoWeather: { screen: DemoWeather },
+  Weather : { screen: Weather},
 });
 
 export default MyFirstApp;

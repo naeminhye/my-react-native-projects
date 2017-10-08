@@ -43,13 +43,13 @@ export default class GridTask extends React.Component {
                     >
                         <View style={{ flex: 1, flexDirection: 'row', }}>
                             <View  style={{ flex: 6 }}>
-                                <Icon name="clock" size={18} color="#cecece" iconStyle={{ marginRight: 20 }} >
+                                <Icon.Button name="clock" size={18} color="#cecece" backgroundColor='transparent' iconStyle={{ marginRight: 20 }} >
                                     { this.state.fontLoaded ? (
                                     <Text style={[styles.itemTime, { fontFamily: 'dosis-medium' }]}>
                                         {item.time}
                                     </Text> ) : <Text style={styles.itemTime}>{item.time}</Text> }
                                     {/* <Text style={styles.itemTime}> {item.time}</Text> */}
-                                </Icon>
+                                </Icon.Button>
                                 <Text style={styles.itemName}>{item.name}</Text>
                             </View>
                             <View  style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

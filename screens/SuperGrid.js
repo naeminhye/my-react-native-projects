@@ -17,10 +17,6 @@ export default class SuperGrid extends Component {
       { name: 'PUMPKIN', code: '#d35400' }, { name: 'POMEGRANATE', code: '#c0392b' },
       { name: 'SILVER', code: '#bdc3c7' }, { name: 'ASBESTOS', code: '#7f8c8d' },
     ];
-    const bigItem = {
-        name: 'ROSE QUARTZ',
-        code: '#f7cac9'
-    };
  
     return (
         
