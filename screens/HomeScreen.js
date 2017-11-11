@@ -20,6 +20,7 @@ export default class HomeScreen extends React.Component {
 
     const items = [
       { name: 'Random Color', code: '#1abc9c', navigator: 'Color' }, 
+      { name: 'CityPicker', code: '#e74c3c', navigator: 'CityPicker' },
 	  { name: 'Custom Fonts', code: '#2ecc71', navigator: 'Font' },
       { name: 'Digital Clock', code: '#3498db', navigator: 'Clock' }, 
 	  { name: 'Tap to love', code: '#9b59b6', navigator: 'Heart' },
@@ -32,6 +33,9 @@ export default class HomeScreen extends React.Component {
       { name: 'TestCoords', code: '#f1c40f', navigator: 'TestCoords' }, 
 	  { name: 'DemoWeather', code: '#e67e22', navigator: 'DemoWeather' },
 	  { name: 'Weather', code: '#e74c3c', navigator: 'Weather' },
+	  { name: 'SearchScreen', code: '#e74c3c', navigator: 'SearchScreen' },
+	  { name: 'Kitten', code: '#e74c3c', navigator: 'Kitten' },
+	  { name: 'Input', code: '#e74c3c', navigator: 'Input' },
     ];
 return (
         
